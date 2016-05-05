@@ -1,0 +1,46 @@
+<?php $__env->startSection('title'); ?>
+    <?php echo e(trans('user::auth.register')); ?> | @parent
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <div class="register-logo">
+        <a href="<?php echo e(url('/')); ?>"><?php echo e(setting('core::site-name')); ?></a>
+    </div>
+
+    <div class="register-box-body">
+        <p class="login-box-msg"><?php echo e(trans('user::auth.register')); ?></p>
+
+        <?php echo Form::open(['route' => 'register.post']); ?>
+
+            <div class="form-group has-feedback <?php echo e($errors->has('email') ? ' has-error has-feedback' : ''); ?>">
+                <input type="email" name="email" class="form-control"
+                       placeholder="<?php echo e(trans('user::auth.email')); ?>" value="<?php echo e(old('email')); ?>">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <?php echo $errors->first('email', '<span class="help-block">:message</span>'); ?>
+
+            </div>
+            <div class="form-group has-feedback <?php echo e($errors->has('password') ? ' has-error has-feedback' : ''); ?>">
+                <input type="password" name="password" class="form-control" placeholder="<?php echo e(trans('user::auth.password')); ?>">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <?php echo $errors->first('password', '<span class="help-block">:message</span>'); ?>
+
+            </div>
+            <div class="form-group has-feedback <?php echo e($errors->has('password_confirmation') ? ' has-error has-feedback' : ''); ?>">
+                <input type="password" name="password_confirmation" class="form-control" placeholder="<?php echo e(trans('user::auth.password confirmation')); ?>">
+                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                <?php echo $errors->first('password_confirmation', '<span class="help-block">:message</span>'); ?>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat"><?php echo e(trans('user::auth.register me')); ?></button>
+                </div>
+            </div>
+        <?php echo Form::close(); ?>
+
+
+        <a href="<?php echo e(route('login')); ?>" class="text-center"><?php echo e(trans('user::auth.I already have a membership')); ?></a>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.account', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
